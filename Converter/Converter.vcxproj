@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,7 +130,21 @@
   <ItemGroup>
     <ClCompile Include="Converter.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\CodePorting.Translator.Cs2Cpp.Framework.23.5.0\build\native\CodePorting.Translator.Cs2Cpp.Framework.targets" Condition="Exists('..\packages\CodePorting.Translator.Cs2Cpp.Framework.23.5.0\build\native\CodePorting.Translator.Cs2Cpp.Framework.targets')" />
+    <Import Project="..\packages\Aspose.Words.Cpp.23.5.0\build\native\aspose.words.cpp.targets" Condition="Exists('..\packages\Aspose.Words.Cpp.23.5.0\build\native\aspose.words.cpp.targets')" />
+    <Import Project="..\packages\Aspose.PDF.Cpp.23.5.0\build\native\aspose.pdf.cpp.targets" Condition="Exists('..\packages\Aspose.PDF.Cpp.23.5.0\build\native\aspose.pdf.cpp.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\CodePorting.Translator.Cs2Cpp.Framework.23.5.0\build\native\CodePorting.Translator.Cs2Cpp.Framework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CodePorting.Translator.Cs2Cpp.Framework.23.5.0\build\native\CodePorting.Translator.Cs2Cpp.Framework.targets'))" />
+    <Error Condition="!Exists('..\packages\Aspose.Words.Cpp.23.5.0\build\native\aspose.words.cpp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Aspose.Words.Cpp.23.5.0\build\native\aspose.words.cpp.targets'))" />
+    <Error Condition="!Exists('..\packages\Aspose.PDF.Cpp.23.5.0\build\native\aspose.pdf.cpp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Aspose.PDF.Cpp.23.5.0\build\native\aspose.pdf.cpp.targets'))" />
+  </Target>
 </Project>

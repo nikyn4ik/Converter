@@ -5,7 +5,7 @@
 #include <fstream>
 #include <filesystem>
 
-void CopyAndModifyFile(const std::string& sourceFile, const std::string& destinationFile) {
+void File(const std::string& sourceFile, const std::string& destinationFile) {
     std::ifstream source(sourceFile);
     std::ofstream destination(destinationFile);
     std::string line;
@@ -13,10 +13,6 @@ void CopyAndModifyFile(const std::string& sourceFile, const std::string& destina
     while (std::getline(source, line)) {
         destination << line << '\n';
     }
-}
-
-void ProcessCppAndHFiles(const std::string& directory, const std::string& font, int size)
-{
 }
 
 int main() {
@@ -27,24 +23,24 @@ int main() {
     int choice;
 
     while (true) {
-        std::cout << "Меню:\n";
-        std::cout << "1) Выбор файла/директории\n";
-        std::cout << "2) Выход\n";
-        std::cout << "Выбор: ";
+        std::cout << "Menu:\n";
+        std::cout << "1) File/Folder\n";
+        std::cout << "2) Exit\n";
+        std::cout << "Choice: ";
         std::cin >> choice;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         switch (choice) {
         case 1:
-            std::cout << "Укажите путь до файла или директории: ";
+            std::cout << "Specify the path to the file or directory: ";
             std::getline(std::cin, path);
 
             if (std::ifstream(path)) {
                 const std::string newFilePath = path.substr(0, path.find_last_of('.')) + "_copy.txt";
                 CopyAndModifyFile(path, newFilePath);
-                std::cout << "Создан новый файл: " << newFilePath << '\n';
+                std::cout << "A new file has been created: " << newFilePath << '\n';
             }
             else {
-                std::cout << "Указанный файл/директория не существует.\n";
+                std::cout << "The specified file/directory does not exist.\n";
             }
             break;
 
@@ -52,7 +48,7 @@ int main() {
             return 0;
 
         default:
-            std::cout << "Неверный ввод.\n";
+            std::cout << " Invalid input.\n";
             break;
         }
 
